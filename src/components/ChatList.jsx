@@ -5,13 +5,18 @@ import User1 from '../assets/user1.jpeg'
 import VectorIcon from '../utils/VectorIcon'
 import { Colors } from '../theme/Colors'
 import { ChatListData } from '../data/ChatListData'
-
+import { useNavigation } from '@react-navigation/native'
+ 
 const ChatList = () => {
+    const navigation = useNavigation()
+    const onNavigate = () => {
+        navigation.navigate('Chat');
+    } 
     return (
         <>
             {ChatListData.map((item) => (
                 <View key={item.id}>
-                    <TouchableOpacity style={styles.container}>
+                    <TouchableOpacity style={styles.container} onPress={onNavigate}>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
                             <Image style={styles.profileImg} source={item.profile} />
                             <View>

@@ -10,16 +10,18 @@ const Tab = createMaterialTopTabNavigator();
 
 const TopTabBar = () => {
   return (
-    <Tab.Navigator screenOptions={{
-      tabBarInactiveTintColor: Colors.secondaryColor,
-      tabBarActiveTintColor: Colors.tertiary,
-      tabBarIndicatorStyle: {
-        backgroundColor: Colors.tertiary,
-      },
-      tabBarStyle: {
-        backgroundColor: Colors.primaryColor
-      }
-    }}
+    <Tab.Navigator
+      initialRoute="ChatList"
+      screenOptions={{
+        tabBarInactiveTintColor: Colors.secondaryColor,
+        tabBarActiveTintColor: Colors.tertiary,
+        tabBarIndicatorStyle: {
+          backgroundColor: Colors.tertiary,
+        },
+        tabBarStyle: {
+          backgroundColor: Colors.primaryColor
+        },
+      }}
     >
       <Tab.Screen name="ChatList" component={ChatListScreen}
         options={{

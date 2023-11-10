@@ -9,7 +9,7 @@ export default function ChatScreen() {
   return (
     <View>
       <ChatHeader/>
-      <ChatBody/>
+      <ChatBody userId="1jdfnvchjkd" chatId="1jdfnvchjkd"/>
       <ChatFooter/>
     </View>
   )

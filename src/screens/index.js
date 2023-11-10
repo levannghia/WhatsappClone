@@ -5,6 +5,8 @@ import StatusListScreen from "./StatusListScreen";
 import CommunityScreen from "./CommunityScreen";
 import CallListScreen from "./CallListScreen";
 import ChatScreen from "./ChatScreen";
+import StatusScreen from "./StatusScreen";
+import ContactScreen from "./ContactScreen";
 
 export {
     HomeScreen,
@@ -13,4 +15,6 @@ export {
     CallListScreen,
     CommunityScreen,
     ChatScreen,
+    StatusScreen,
+    ContactScreen,
 }

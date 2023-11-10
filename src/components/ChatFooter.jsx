@@ -46,7 +46,12 @@ export default function ChatFooter() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.primaryColor
+        backgroundColor: Colors.black,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     textInput: {
         fontSize: 17,

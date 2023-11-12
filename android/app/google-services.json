@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1036080359815",
+    "project_id": "qwitter-6fcc2",
+    "storage_bucket": "qwitter-6fcc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036080359815:android:48f0cd8e8ee146a5314b22",
+        "android_client_info": {
+          "package_name": "com.whatsappclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036080359815-s5unhi34qb071q3ht48gg4urilprhb3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI-zA-DQvpj2B8Ttu5Sw2MuG-4eq2pPsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036080359815-s5unhi34qb071q3ht48gg4urilprhb3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,7 +6,10 @@ import VectorIcon from '../utils/VectorIcon';
 import { MessagesData } from '../data/MessageData';
 
 export default function ChatBody({ chatId, userId }) {
-
+  const scrollViewRef = useRef()
+  const scrollToBottom = () => {
+    scrollViewRef.current.scrollToEnd({animated: true});
+  }
   const UserMessageView = ({ message, time }) => {
     return (
       <View style={styles.userContainer}>
@@ -39,19 +42,24 @@ export default function ChatBody({ chatId, userId }) {
   return (
     <>
       <ScrollView
+        ref={scrollViewRef}
+        contentContainerStyle={{paddingHorizontal: 12}}
+        showsVerticalScrollIndicator={false}
         onContentSizeChange={scrollToBottom}
-        showsVerticalScrollIndicator={false}>
+        >
         {MessagesData.map(item => (
           <>
             {item.sender === userId ? (
               <UserMessageView
-                message={item.body}
-                time={item.timestamp?.toDate().toDateString()}
+                key={item.id}
+                message={item.message}
+                time={item.time}
               />
             ) : (
               <OtherUserMessageView
-                message={item.body}
-                time={item.timestamp?.toDate().toDateString()}
+                key={item.id}
+                message={item.message}
+                time={item.time}
               />
             )}
           </>

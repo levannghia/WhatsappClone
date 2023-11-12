@@ -12,7 +12,7 @@ const ContactList = ({userId}) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    getImage();
+    // getImage();
     getUserData()
       .then(res => setUsers(res))
       .catch(error => console.log('error :', error));
@@ -22,9 +22,9 @@ const ContactList = ({userId}) => {
     const userRef = await firestore().collection('users').get();
     const userData = Promise.all(
       userRef.docs
-        .filter(item => {
-          return item.id != userId;
-        })
+        // .filter(item => {
+        //   return item.id != userId;
+        // })
         .map(async item => {
           const id = item.id;
           const name = item.data().name;

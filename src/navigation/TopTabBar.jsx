@@ -49,8 +49,12 @@ const TopTabBar = () => {
           tabBarShowLabel: false,
         }}
       />
-      <Tab.Screen name="StatusList" component={StatusListScreen} />
-      <Tab.Screen name="CallList" component={CallListScreen} />
+      <Tab.Screen name="StatusList" component={StatusListScreen} options={{
+        tabBarLabel: "STATUS"
+      }}/>
+      <Tab.Screen name="CallList" component={CallListScreen} options={{
+        tabBarLabel: "CALLS"
+      }}/>
     </Tab.Navigator>
   )
 }

@@ -1,17 +1,19 @@
 /* eslint-disable */
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import VectorIcon from '../utils/VectorIcon'
 import ChatList from '../components/ChatList'
 import { Colors } from '../theme/Colors'
+import { useNavigation } from '@react-navigation/native'
 
 const ChatListScreen = () => {
+  const navigation = useNavigation()
   return (
     <View style={styles.container}>
       <ScrollView>
         <ChatList/>
       </ScrollView>
-      <TouchableOpacity style={styles.contactIcon}>
+      <TouchableOpacity style={styles.contactIcon} onPress={() => navigation.navigate('Contact')}>
       <VectorIcon
           name="message-reply-text"
           type="MaterialCommunityIcons"

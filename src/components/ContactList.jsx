@@ -40,7 +40,7 @@ const ContactList = ({userId}) => {
   };
 
   const onNavigate = contactId => {
-    navigation.navigate('ChatScreen', {
+    navigation.navigate('Chat', {
       userId: userId,
       contactId: contactId,
     });

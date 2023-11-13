@@ -3,8 +3,9 @@ import { StyleSheet, Text, View, TextInput, Alert } from 'react-native'
 import React, { useState } from 'react'
 import VectorIcon from '../utils/VectorIcon'
 import { Colors } from '../theme/Colors'
+import firestore from '@react-native-firebase/firestore'
 
-export default function ChatFooter() {
+export default function ChatFooter({ chatRef, userId }) {
     const [message, setMessage] = useState('');
     const [sendEnable, setSendEnable] = useState(false)
 
@@ -14,9 +15,13 @@ export default function ChatFooter() {
     }
 
     const onSend = () => {
+        chatRef.collection('messages').add({
+            body: message,
+            senderId: userId,
+            timestamps: firestore.FieldValue.serverTimestamp(),
+        });
         setMessage('')
-        setSendEnable(false),
-        Alert.alert("send message!")
+        setSendEnable(false)
     }
     return (
         <View style={styles.container}>
@@ -28,7 +33,7 @@ export default function ChatFooter() {
                         size={24}
                         color={Colors.white}
                     />
-                    <TextInput placeholder='Message' style={styles.textInput} onChangeText={value => onChange(value)} value={message}/>
+                    <TextInput placeholder='Message' style={styles.textInput} onChangeText={value => onChange(value)} value={message} />
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: "center" }}>
                     <VectorIcon

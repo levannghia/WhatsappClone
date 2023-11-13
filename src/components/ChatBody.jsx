@@ -4,9 +4,15 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Colors } from '../theme/Colors';
 import VectorIcon from '../utils/VectorIcon';
 import { MessagesData } from '../data/MessageData';
+import firestore from '@react-native-firebase/firestore'
 
 export default function ChatBody({ chatId, userId }) {
   const scrollViewRef = useRef()
+
+  useEffect(() => {
+    firestore().collection('chats').doc(chatId)
+    .collection('messages').get();
+  }, [])
   const scrollToBottom = () => {
     scrollViewRef.current.scrollToEnd({animated: true});
   }
@@ -47,17 +53,17 @@ export default function ChatBody({ chatId, userId }) {
         showsVerticalScrollIndicator={false}
         onContentSizeChange={scrollToBottom}
         >
-        {MessagesData.map(item => (
+        {MessagesData.map((item,index) => (
           <>
             {item.sender === userId ? (
               <UserMessageView
-                key={item.id}
+                key={index}
                 message={item.message}
                 time={item.time}
               />
             ) : (
               <OtherUserMessageView
-                key={item.id}
+                key={index}
                 message={item.message}
                 time={item.time}
               />

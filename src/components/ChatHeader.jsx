@@ -1,19 +1,35 @@
 /* eslint-disable */
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Profile from '../assets/user1.jpeg'
 import VectorIcon from '../utils/VectorIcon'
 import { Colors } from '../theme/Colors'
 import { useNavigation } from '@react-navigation/native'
+import { getImage } from '../utils/helper'
 
-export default function ChatHeader() {
+export default function ChatHeader({contactUserRef}) {
     const navigation = useNavigation()
+    const [user, setuser] = useState({})
+    const getContactData = async () => {
+        const contactSnapShot = await contactUserRef.get();
+        const data = contactSnapShot.data();
+        const name = data.name
+        const profile = await getImage(data.profile)
+
+        setuser({name, profile})
+    }
+
+    useEffect(() => {
+        getContactData();
+    }, [contactUserRef])
+    
+
     return (
         <View style={styles.container}>
             <View style={styles.innerContainer}>
                 <VectorIcon size={24} color={Colors.white} name="arrow-back" type="Ionicons" onPress={() => navigation.goBack()}/>
-                <Image source={Profile} style={styles.profilePhoto} />
-                <Text style={{ fontSize: 17, marginLeft: 10, color: Colors.white }}>Kaju</Text>
+                {user?.profile && <Image source={{uri: user.profile}} style={styles.profilePhoto} />}
+                {user?.name && <Text style={{ fontSize: 17, marginLeft: 10, color: Colors.white }}>{user.name}</Text>}
             </View>
             <View style={styles.innerContainer}>
                 <VectorIcon

@@ -15,10 +15,11 @@ const ChatListScreen = () => {
     getDeviceId().then(id => setUserId(id))
   }, [])
  
+  // console.log(userId);
   return (
     <View style={styles.container}>
       <ScrollView>
-        <ChatList/>
+        <ChatList userId={userId}/>
       </ScrollView>
       <TouchableOpacity style={styles.contactIcon} onPress={() => navigation.navigate('Contact', {userId: userId})}>
       <VectorIcon

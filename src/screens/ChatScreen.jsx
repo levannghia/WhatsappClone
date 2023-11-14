@@ -23,8 +23,8 @@ export default function ChatScreen(props) {
 
   const createChatRoom = async () => {
     const chatSnapShot = await chatRef.get();
-    if(!chatSnapShot.exists){
-      const participants = [userId, contactRef]
+    if(!chatSnapShot.exists) {
+      const participants = [userRef, contactRef]
       await chatRef.set({participants})
     }
   }
@@ -35,7 +35,7 @@ export default function ChatScreen(props) {
     <>
       <ChatHeader contactUserRef={contactRef}/>
       <ImageBackground style={{flex: 1, height: "100%", paddingBottom: 5}} source={BackgroundImg}>
-        <ChatBody userId={userId} chatId={contactId}/>
+        <ChatBody userId={userId} chatId={chatId}/>
       </ImageBackground>
       <ChatFooter chatRef={chatRef} userId={userId}/>
     </>

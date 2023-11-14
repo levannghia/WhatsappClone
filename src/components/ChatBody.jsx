@@ -8,10 +8,18 @@ import firestore from '@react-native-firebase/firestore'
 
 export default function ChatBody({ chatId, userId }) {
   const scrollViewRef = useRef()
+  const [messages, setMessages] = useState([])
 
   useEffect(() => {
     firestore().collection('chats').doc(chatId)
-    .collection('messages').get();
+    .collection('messages').orderBy('timestamps')
+    .onSnapshot(snapshot => {
+      const allMessage = snapshot.docs.map(snap => {
+        return snap.data();
+      })
+      setMessages(allMessage);
+      // console.log("snapshot: ", allMessage);
+    });
   }, [])
   const scrollToBottom = () => {
     scrollViewRef.current.scrollToEnd({animated: true});
@@ -53,19 +61,19 @@ export default function ChatBody({ chatId, userId }) {
         showsVerticalScrollIndicator={false}
         onContentSizeChange={scrollToBottom}
         >
-        {MessagesData.map((item,index) => (
+        {messages.map((item, index) => (
           <>
-            {item.sender === userId ? (
+            {item.senderId === userId ? (
               <UserMessageView
                 key={index}
-                message={item.message}
-                time={item.time}
+                message={item.body}
+                time={item.timestamps?.toDate().toDateString()}
               />
             ) : (
               <OtherUserMessageView
                 key={index}
-                message={item.message}
-                time={item.time}
+                message={item.body}
+                time={item.timestamps?.toDate().toDateString()}
               />
             )}
           </>
